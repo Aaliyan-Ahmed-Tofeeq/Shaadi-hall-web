@@ -1,0 +1,13 @@
+{
+  "eyebrow": "Est. 2009 · Lahore's Most Distinguished Venue",
+  "headline": "Where Royal Love Stories Begin",
+  "tagline": "An address of timeless elegance — Mehrab Hall blends royal Mughal-inspired architecture, five-star hospitality, and meticulous craftsmanship to host the most cherished day of your life.",
+  "backgroundImage": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1920&auto=format&fit=crop",
+  "ctaLabel": "Book Your Date",
+  "phone": "+923001234567",
+  "stats": [
+    { "value": 1200, "label": "Guest Capacity" },
+    { "value": 850, "label": "Events Hosted" },
+    { "value": 16, "label": "Years of Legacy" }
+  ]
+}

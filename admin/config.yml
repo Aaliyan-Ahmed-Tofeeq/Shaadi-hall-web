@@ -1,0 +1,139 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Requires: (1) Git-based hosting (Netlify/Vercel + Git Gateway, or GitHub backend),
+# (2) Identity/auth enabled for the repo. See https://decapcms.org/docs/add-to-your-site/
+# Content is stored as JSON under /content and is consumed by js/content-loader.js
+# at runtime for the fields wired up in this starter (hero, about, contact, SEO).
+# Extending the loader to the remaining collections follows the same pattern.
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "seo"
+    label: "SEO Settings"
+    files:
+      - file: "content/seo.json"
+        label: "Global SEO"
+        name: "seo"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text" }
+          - { label: "Open Graph Image", name: "ogImage", widget: "image" }
+          - { label: "Canonical URL", name: "canonical", widget: "string" }
+
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - file: "content/hero.json"
+        label: "Hero Content"
+        name: "hero"
+        fields:
+          - { label: "Eyebrow Text", name: "eyebrow", widget: "string" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "text" }
+          - { label: "Background Image", name: "backgroundImage", widget: "image" }
+          - { label: "Primary Button Label", name: "ctaLabel", widget: "string" }
+          - { label: "Phone Number", name: "phone", widget: "string" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "number" }
+              - { label: "Label", name: "label", widget: "string" }
+
+  - name: "about"
+    label: "About Section"
+    files:
+      - file: "content/about.json"
+        label: "About Content"
+        name: "about"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Lead Paragraph", name: "lead", widget: "text" }
+          - { label: "Body Paragraph", name: "body", widget: "text" }
+          - { label: "Owner Quote", name: "quote", widget: "text" }
+          - { label: "Owner Name", name: "ownerName", widget: "string" }
+          - label: "Gallery Images"
+            name: "images"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Icon", name: "icon", widget: "select", options: ["crown","bed","utensils","camera","music","bulb","zap","shield","car","snow"] }
+      - { label: "Order", name: "order", widget: "number" }
+
+  - name: "packages"
+    label: "Wedding Packages"
+    folder: "content/packages"
+    create: true
+    fields:
+      - { label: "Tier Name", name: "name", widget: "string" }
+      - { label: "Price Per Head", name: "price", widget: "number" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        field: { label: "Feature", name: "feature", widget: "string" }
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content/gallery"
+    create: true
+    fields:
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Caption", name: "caption", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["stage","dining","lawn","decor"] }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "content/testimonials"
+    create: true
+    fields:
+      - { label: "Guest Names", name: "names", widget: "string" }
+      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Rating (1-5)", name: "rating", widget: "number", min: 1, max: 5 }
+      - { label: "Package Booked", name: "package", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+
+  - name: "faqs"
+    label: "FAQs"
+    folder: "content/faqs"
+    create: true
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Answer", name: "answer", widget: "text" }
+
+  - name: "menu"
+    label: "Catering Menu"
+    folder: "content/menu"
+    create: true
+    fields:
+      - { label: "Dish Name", name: "name", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Cuisine", name: "cuisine", widget: "select", options: ["pakistani","chinese","bbq","continental","desserts"] }
+      - { label: "Photo", name: "photo", widget: "image" }
+
+  - name: "contact"
+    label: "Contact Info"
+    files:
+      - file: "content/contact.json"
+        label: "Contact Details"
+        name: "contact"
+        fields:
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "WhatsApp Number", name: "whatsapp", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Address", name: "address", widget: "text" }
+          - { label: "Business Hours", name: "hours", widget: "string" }

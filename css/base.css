@@ -1,0 +1,258 @@
+/* ==========================================================================
+   MEHRAB HALL — Base / Design Tokens
+   Luxury Royal Maroon theme
+   ========================================================================== */
+
+:root{
+  /* ---- Brand palette ---- */
+  --color-primary:      #5A0B18;   /* royal maroon   */
+  --color-primary-dark: #3E070F;
+  --color-secondary:    #8B1E2D;   /* deep red       */
+  --color-cream:        #F7F0E8;
+  --color-gold:         #D4AF37;
+  --color-gold-soft:    #E9CE7C;
+  --color-white:        #FFFFFF;
+  --color-text:         #2B2B2B;
+  --color-text-soft:    #6B5B5B;
+
+  /* ---- Surfaces ---- */
+  --surface-cream:  var(--color-cream);
+  --surface-maroon: var(--color-primary);
+  --surface-glass:  rgba(90,11,24,0.62);
+
+  /* ---- Type ---- */
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-body: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --fs-eyebrow: clamp(0.72rem, 0.68rem + 0.2vw, 0.82rem);
+  --fs-body:    clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+  --fs-h1:      clamp(2.4rem, 1.9rem + 3vw, 4.6rem);
+  --fs-h2:      clamp(1.9rem, 1.6rem + 1.6vw, 3rem);
+  --fs-h3:      clamp(1.3rem, 1.15rem + 0.8vw, 1.8rem);
+  --fs-h4:      clamp(1.05rem, 1rem + 0.3vw, 1.25rem);
+  --fs-lead:    clamp(1.05rem, 1rem + 0.4vw, 1.25rem);
+
+  /* ---- Spacing scale ---- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2.5rem;
+  --space-xl:  4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+
+  --section-pad: clamp(3.5rem, 2.8rem + 3vw, 7rem);
+  --container-w: 1280px;
+  --container-pad: clamp(1.25rem, 0.9rem + 1.6vw, 3rem);
+
+  /* ---- Effects ---- */
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 26px;
+  --shadow-soft: 0 10px 40px -12px rgba(58,7,15,0.28);
+  --shadow-card: 0 18px 50px -18px rgba(58,7,15,0.35);
+  --shadow-gold: 0 8px 30px -10px rgba(212,175,55,0.55);
+  --ease-royal: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.25s;
+  --dur-med: 0.55s;
+  --dur-slow: 0.9s;
+
+  --nav-h: 84px;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after{ box-sizing: border-box; }
+html{
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body{
+  margin:0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, picture, video, canvas, svg{ display:block; max-width:100%; height:auto; }
+ul, ol{ margin:0; padding:0; list-style:none; }
+a{ color: inherit; text-decoration: none; }
+button{ font: inherit; cursor:pointer; }
+input, textarea, select{ font: inherit; }
+h1,h2,h3,h4,p,figure{ margin:0; }
+
+/* ---- Focus states (accessibility) ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible{
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Skip link ---- */
+.skip-link{
+  position:absolute;
+  left:-9999px;
+  top:0;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.8rem 1.4rem;
+  z-index: 10000;
+  border-radius: 0 0 8px 0;
+  font-weight:600;
+}
+.skip-link:focus{ left:0; }
+
+/* ---- Typography helpers ---- */
+h1,h2,h3,.font-display{ font-family: var(--font-display); font-weight:700; letter-spacing:0.01em; }
+h1{ font-size: var(--fs-h1); line-height:1.06; }
+h2{ font-size: var(--fs-h2); line-height:1.12; }
+h3{ font-size: var(--fs-h3); line-height:1.25; }
+h4{ font-size: var(--fs-h4); line-height:1.35; font-family: var(--font-body); font-weight:600; }
+.lead{ font-size: var(--fs-lead); color: var(--color-text-soft); }
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:0.6em;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  font-weight:600;
+}
+.eyebrow::before,
+.eyebrow::after{
+  content:"";
+  width: 26px;
+  height:1px;
+  background: var(--color-gold);
+}
+.eyebrow--on-dark{ color: var(--color-gold-soft); }
+
+.section-head{
+  max-width: 760px;
+  margin: 0 auto var(--space-xl);
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap: var(--space-sm);
+}
+.section-head h2{ color: var(--color-primary); }
+.section-head p{ color: var(--color-text-soft); }
+.section-head--left{ margin: 0 0 var(--space-xl); text-align:left; align-items:flex-start; }
+
+/* ---- Layout ---- */
+.container{
+  width:100%;
+  max-width: var(--container-w);
+  margin-inline:auto;
+  padding-inline: var(--container-pad);
+}
+.section{ padding-block: var(--section-pad); position:relative; }
+.section--cream{ background: var(--surface-cream); }
+.section--maroon{
+  background: linear-gradient(165deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-cream);
+}
+.section--maroon h2, .section--maroon h3{ color: var(--color-white); }
+.section--white{ background: var(--color-white); }
+
+/* ---- Ornamental divider (signature motif) ---- */
+.ornament{
+  width: 88px;
+  height: 34px;
+  margin-inline:auto;
+  color: var(--color-gold);
+  flex-shrink:0;
+}
+.ornament--light{ color: var(--color-gold-soft); }
+
+/* ---- Buttons ---- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.6em;
+  padding: 0.95em 1.9em;
+  min-height:48px;
+  border-radius: 999px;
+  font-weight:600;
+  font-size: 0.95rem;
+  letter-spacing:0.02em;
+  border: 1.5px solid transparent;
+  transition: transform var(--dur-fast) var(--ease-royal),
+              box-shadow var(--dur-fast) var(--ease-royal),
+              background var(--dur-fast) var(--ease-royal),
+              color var(--dur-fast) var(--ease-royal),
+              border-color var(--dur-fast) var(--ease-royal);
+  white-space: nowrap;
+}
+.btn svg{ width:1.1em; height:1.1em; flex-shrink:0; }
+.btn:hover{ transform: translateY(-2px); }
+.btn:active{ transform: translateY(0); }
+
+.btn--gold{
+  background: linear-gradient(180deg, var(--color-gold-soft), var(--color-gold));
+  color: var(--color-primary-dark);
+  box-shadow: var(--shadow-gold);
+}
+.btn--gold:hover{ box-shadow: 0 14px 34px -10px rgba(212,175,55,0.7); }
+
+.btn--outline{
+  background: transparent;
+  color: var(--color-white);
+  border-color: rgba(255,255,255,0.55);
+}
+.btn--outline:hover{ background: rgba(255,255,255,0.12); border-color: var(--color-white); }
+
+.btn--outline-maroon{
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn--outline-maroon:hover{ background: var(--color-primary); color: var(--color-white); }
+
+.btn--primary{
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.btn--primary:hover{ background: var(--color-primary-dark); }
+
+.btn--block{ width:100%; }
+.btn--sm{ padding: 0.7em 1.4em; min-height:40px; font-size:0.85rem; }
+
+/* ---- Cards shared ---- */
+.card{
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Utility ---- */
+.visually-hidden{
+  position:absolute !important;
+  width:1px;height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+}
+.text-center{ text-align:center; }
+.mt-0{ margin-top:0; }
